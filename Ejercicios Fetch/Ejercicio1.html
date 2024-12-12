@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const form = document.createElement("form");
+        const input = document.createElement("input");
+        const buton = document.createElement("button");
+        
+        document.body.append(form);
+        input.setAttribute("type", "text");
+        buton.textContent = "ENVIAR";
+        
+        form.append(input,buton);
+
+        function subirLocalStorage(palabra){
+            localStorage.setItem("nombre", palabra);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            buton.addEventListener("click", () =>{
+                let palabra = input.value.trim().toLowerCase();
+                subirLocalStorage(palabra);
+            })
+        });
+    </script>
+</body>
+</html>

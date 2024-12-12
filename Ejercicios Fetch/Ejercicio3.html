@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const form = document.createElement("form");
+        const input = document.createElement("input");
+        input.setAttribute("type","text");
+        input.focus();
+        const buton = document.createElement("button");
+        buton.textContent = "Añadir Tarea";
+        const ul = document.createElement("ul");
+        let array = JSON.parse(localStorage.getItem("tareas")) || [];
+        console.log(array);
+
+        document.body.append(form, ul);
+        form.append(input,buton);
+
+        document.addEventListener("DOMContentLoaded", () =>{
+            if(array != []){
+                cargarDatos();
+            }
+            buton.addEventListener("click", (e) =>{
+                e.preventDefault();
+                let palabra = input.value.trim().toLowerCase();
+                let li = document.createElement("li");
+                if(palabra != ""){
+                    li.textContent = palabra;
+                    ul.append(li);
+                    array.push(palabra);
+                    console.log(array);
+                    localStorage.setItem("tareas", JSON.stringify(array));
+                }
+                input.value=null;
+            })
+        })
+
+        function cargarDatos(){
+            array.forEach(element => {
+                let li = document.createElement("li");
+                li.textContent = element;
+                ul.append(li);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let variable = localStorage.getItem("clicks") || 0;
+        const buton = document.createElement("button");
+        buton.textContent = variable;
+
+        document.body.append(buton);
+
+        function subirLocalStorage(valor){
+            localStorage.setItem("clicks", valor);
+        }
+
+        document.addEventListener("DOMContentLoaded", () =>{
+            buton.addEventListener("click", () =>{
+                variable++;
+                buton.textContent = variable;     
+                subirLocalStorage(variable);
+            })
+        })
+    </script>
+</body>
+</html>
